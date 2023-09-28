@@ -9,7 +9,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setTitle("BK PIcross");
+		config.setTitle("BK Picross");
+		config.setWindowedMode(640, 513);
 		new Lwjgl3Application(new BKPicrossMain(), config);
 	}
 }
