@@ -8,13 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import org.w3c.dom.Text;
-
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class BKPicrossMain extends ApplicationAdapter {
 	SpriteBatch batch;
+	//region Textures
 	Texture fill;
 	Texture empty;
 	Texture nine;
@@ -29,12 +27,15 @@ public class BKPicrossMain extends ApplicationAdapter {
 	Texture zero;
 	Texture newGameButton;
 	Texture mark;
+	//endregion
 	Vector2 touchPos;
+	//region Integers
 	int clickY;
 	int clickX;
 	int row;
 	int red;
 	int blue;
+	//endregion
 	long lastClick;
 	
 	@Override
@@ -42,6 +43,7 @@ public class BKPicrossMain extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		Board localBoard = new Board();
 		touchPos = new Vector2();
+		//region Setting Textures
 		fill  = new Texture("filled.png");
 		empty = new Texture("empty.png");
 		zero = new Texture("Numbers/0.png");
@@ -56,6 +58,7 @@ public class BKPicrossMain extends ApplicationAdapter {
 		nine = new Texture("Numbers/9.png");
 		newGameButton = new Texture("new_game_button.png");
 		mark = new Texture("mark.png");
+		//endregion
 		red = 1;
 		blue = 1;
 	}
@@ -78,9 +81,7 @@ public class BKPicrossMain extends ApplicationAdapter {
 		}
 		verticalNums();
 		horizontalNums();
-		if (Board.checkBoard()){
-			batch.draw(newGameButton, 500, 320);
-		}
+		batch.draw(newGameButton, 500, 320);
 		batch.end();
 		if (Gdx.input.isTouched()) {
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY());
@@ -92,7 +93,7 @@ public class BKPicrossMain extends ApplicationAdapter {
 						Board.board[clickY][clickX] = !Board.board[clickY][clickX];
 						lastClick = TimeUtils.nanoTime();
 					}
-					if (touchPos.y >= 160 && touchPos.y <= 193 && touchPos.x >= 500 && touchPos.x <= 563 && Board.checkBoard()) {
+					if (touchPos.y >= 160 && touchPos.y <= 193 && touchPos.x >= 500 && touchPos.x <= 563) {
 						Board.clearBoard();
 						Board.randomizeSolution();
 						lastClick = TimeUtils.nanoTime();
