@@ -39,7 +39,7 @@ namespace BK_Picross
             {
                 for (int i = 0; i < board.GetLength(1); i++)
                 {
-                    board[k,i] = false;
+                    board[k,i] = true;
                 }
             }
         }
