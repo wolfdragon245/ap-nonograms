@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7ddb056-e95b-4369-a3e6-feab889001ff" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/FileContentIndex/164658ac-fcd8-4b6d-9b60-2d6f78ab61be.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/FileContentIndex/545d6830-f511-40d0-97da-8212b42d83b7.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/FileContentIndex/7b5dd01b-5cfd-43f3-9eec-a9ec369e266f.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/FileContentIndex/d95a2dfc-1e00-457d-8da2-08d5d5c7c0bc.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/BK Picross/.vs/BK Picross/v17/.suo" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2WIVtKA4pZJ2BQ4CJ67knay1qQW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "android.gradle.sync.needed": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7ddb056-e95b-4369-a3e6-feab889001ff" name="Changes" comment="" />
+      <created>1696420295650</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696420295650</updated>
+    </task>
+    <servers />
+  </component>
+</project>

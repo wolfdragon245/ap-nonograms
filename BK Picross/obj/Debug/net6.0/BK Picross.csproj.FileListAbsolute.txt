@@ -1,0 +1,41 @@
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\BK Picross.exe
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\BK Picross.deps.json
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\BK Picross.runtimeconfig.json
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\BK Picross.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\BK Picross.pdb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\MonoGame.Framework.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.csproj.AssemblyReference.cache
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.AssemblyInfoInputs.cache
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.AssemblyInfo.cs
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.csproj.CoreCompileInputs.cache
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.csproj.CopyComplete
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\refint\BK Picross.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.pdb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.genruntimeconfig.cache
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\ref\BK Picross.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\0.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\1.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\2.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\3.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\4.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\5.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\6.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\7.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\8.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\9.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\empty.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\filled.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\mark.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\new_game_button.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Archipelago.MultiClient.Net.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Newtonsoft.Json.dll
