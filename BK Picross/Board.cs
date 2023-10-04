@@ -39,9 +39,10 @@ namespace BK_Picross
             {
                 for (int i = 0; i < board.GetLength(1); i++)
                 {
-                    board[k,i] = true;
+                    board[k,i] = false;
                 }
             }
+            clearFlag();
         }
 
         public static void clearFlag()
