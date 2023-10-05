@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BK_Picross
 {
@@ -32,6 +35,8 @@ namespace BK_Picross
         int row;
         double lastClick;
         Color color;
+        ArchipelagoSession session;
+        bool hintSent;
 
         public BKPicross()
         {
@@ -48,6 +53,10 @@ namespace BK_Picross
             _graphics.ApplyChanges();
             Board localboard = new Board();
             touchPos = new Vector2();
+
+            session = ArchipelagoSessionFactory.CreateSession("archipelago.gg", 58293);
+            var result = session.TryConnectAndLogin("", "Ospideal", ItemsHandlingFlags.NoItems,
+                    tags: new[] { "BK_Picross", "TextOnly", "Awesome", "Amazing", "MadeByCelesteDev1" }, requestSlotData: false);
 
             base.Initialize();
         }
@@ -93,6 +102,8 @@ namespace BK_Picross
                     {
                         Board.clearBoard();
                         Board.randomizeSolution();
+                        hintSent = false;
+                        
                         lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                     }
                 }
@@ -109,6 +120,11 @@ namespace BK_Picross
             {
                 color = Color.Lime;
                 Board.clearFlag();
+                if (!hintSent)
+                {
+                    sendHint();
+                    hintSent = true;
+                }
             }
 
             // TODO: Add your update logic here
@@ -122,6 +138,13 @@ namespace BK_Picross
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
+            for (int k = 0; k < Board.board.GetLength(0); k++)
+            {
+                for (int i = 0; i < Board.board.GetLength(1); i++)
+                {
+                    _spriteBatch.Draw((Board.boardSolution[k, i]) ? fill : empty, new Vector2(160 + (32 * i), 160 + (32 * k)), Color.White);
+                }
+            }
             for (int k = 0; k < Board.board.GetLength(0); k++)
             {
                 for ( int i = 0; i < Board.board.GetLength(1); i++)
@@ -253,6 +276,23 @@ namespace BK_Picross
                     writeNums(hints[i], new Vector2(160 + (32 * k), 128-(32 * i)));
                 }
                 hints.Clear();
+            }
+        }
+
+        public void sendHint()
+        {
+            var missing = session.Locations.AllMissingLocations;
+            var alreadyHinted = session.DataStorage.GetHints()
+                .Where(h => h.FindingPlayer == session.ConnectionInfo.Slot)
+                .Select(h => h.LocationId);
+
+            var availableForHinting = missing.Except(alreadyHinted).ToArray();
+
+            if (availableForHinting.Any())
+            {
+                var locationId = availableForHinting[Board.random.Next(0, availableForHinting.Length)];
+
+                session.Locations.ScoutLocationsAsync(true, locationId);
             }
         }
     }
