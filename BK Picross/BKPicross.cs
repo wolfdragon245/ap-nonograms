@@ -29,6 +29,7 @@ namespace BK_Picross
         Texture2D one;
         Texture2D zero;
         Texture2D newGameButton;
+        Texture2D connectButton;
         Vector2 touchPos;
         int clickY;
         int clickX;
@@ -36,7 +37,11 @@ namespace BK_Picross
         double lastClick;
         Color color;
         ArchipelagoSession session;
+        LoginResult result;
         bool hintSent;
+        int pendingHints;
+        TextInput address = new TextInput(500, 128, "archipelago.gg:", 15);
+        TextInput slotName = new TextInput(500, 160, "T", 1);
 
         public BKPicross()
         {
@@ -47,16 +52,11 @@ namespace BK_Picross
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 640;
+            _graphics.PreferredBackBufferWidth = 700;
             _graphics.PreferredBackBufferHeight = 513;
             _graphics.ApplyChanges();
             Board localboard = new Board();
             touchPos = new Vector2();
-
-            session = ArchipelagoSessionFactory.CreateSession("archipelago.gg", 58293);
-            var result = session.TryConnectAndLogin("", "Ospideal", ItemsHandlingFlags.NoItems,
-                    tags: new[] { "BK_Picross", "TextOnly", "Awesome", "Amazing", "MadeByCelesteDev1" }, requestSlotData: false);
 
             base.Initialize();
         }
@@ -78,56 +78,33 @@ namespace BK_Picross
             one = Content.Load<Texture2D>("1");
             zero = Content.Load<Texture2D>("0");
             newGameButton = Content.Load<Texture2D>("new_game_button");
-
-            // TODO: use this.Content to load your game content here
+            connectButton = Content.Load<Texture2D>("connect");
+            address.loadFont(Content.Load<SpriteFont>("File"));
+            slotName.loadFont(Content.Load<SpriteFont>("File"));
         }
 
         protected override void Update(GameTime gameTime)
         {
             color = Color.White;
-            touchPos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            clickX = (int)(touchPos.X - 160) / 32;
-            clickY = (int)(touchPos.Y - 160) / 32;
-
-            if (Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString()) - lastClick > 125)
+            if (result != null)
             {
-                if (Mouse.GetState().LeftButton.ToString().Equals("Pressed"))
+                if (!result.Successful)
                 {
-                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9)
-                    {
-                        Board.board[clickY, clickX] = !Board.board[clickY, clickX];
-                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
-                    }
-                    if (touchPos.Y >= 0 && touchPos.Y <= 32 && touchPos.X >= 500 && touchPos.X <= 564)
-                    {
-                        Board.clearBoard();
-                        Board.randomizeSolution();
-                        hintSent = false;
-                        
-                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
-                    }
-                }
-                if (Mouse.GetState().RightButton.ToString().Equals("Pressed"))
-                {
-                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9 && !Board.board[clickY,clickX])
-                    {
-                        Board.flags[clickY, clickX] = !Board.flags[clickY, clickX];
-                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
-                    }
+                    color = Color.Red;
                 }
             }
+            inputHandle(gameTime);
             if (Board.checkBoard())
             {
                 color = Color.Lime;
                 Board.clearFlag();
                 if (!hintSent)
                 {
-                    sendHint();
+                    pendingHints++;
                     hintSent = true;
                 }
             }
-
-            // TODO: Add your update logic here
+            sendHint();
 
             base.Update(gameTime);
         }
@@ -136,15 +113,7 @@ namespace BK_Picross
         {
             GraphicsDevice.Clear(color);
 
-            // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            for (int k = 0; k < Board.board.GetLength(0); k++)
-            {
-                for (int i = 0; i < Board.board.GetLength(1); i++)
-                {
-                    _spriteBatch.Draw((Board.boardSolution[k, i]) ? fill : empty, new Vector2(160 + (32 * i), 160 + (32 * k)), Color.White);
-                }
-            }
             for (int k = 0; k < Board.board.GetLength(0); k++)
             {
                 for ( int i = 0; i < Board.board.GetLength(1); i++)
@@ -164,7 +133,13 @@ namespace BK_Picross
             }
             verticalNums();
             horizontalNums();
-            _spriteBatch.Draw(newGameButton, new Vector2(500,0), Color.White);
+            _spriteBatch.Draw(newGameButton, new Vector2(500,32), Color.White);
+            if (result == null || !result.Successful)
+            {
+                    _spriteBatch.Draw(connectButton, new Vector2(500, 64), Color.White);
+            }
+            address.drawBox(_spriteBatch);
+            slotName.drawBox(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -208,6 +183,57 @@ namespace BK_Picross
                     _spriteBatch.Draw(zero, cords, Color.White);
                     _spriteBatch.Draw(one, new Vector2(cords.X-16,cords.Y), Color.White);
                     break;
+            }
+        }
+
+        public void inputHandle(GameTime gameTime)
+        {
+            touchPos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            clickX = (int)(touchPos.X - 160) / 32;
+            clickY = (int)(touchPos.Y - 160) / 32;
+
+            if (Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString()) - lastClick > 125)
+            {
+                if (Mouse.GetState().LeftButton.ToString().Equals("Pressed"))
+                {
+                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9)
+                    {
+                        Board.board[clickY, clickX] = !Board.board[clickY, clickX];
+                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                    }
+                    if (touchPos.Y >= 32 && touchPos.Y <= 64 && touchPos.X >= 500 && touchPos.X <= 564)
+                    {
+                        Board.clearBoard();
+                        Board.randomizeSolution();
+                        hintSent = false;
+
+                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                    }
+                    if (result == null || !result.Successful)
+                    {
+                        if (touchPos.Y >= 64 && touchPos.Y <= 96 && touchPos.X >= 500 && touchPos.X <= 564)
+                        {
+                            session = ArchipelagoSessionFactory.CreateSession(address.getText());
+                            result = session.TryConnectAndLogin("", "Ospideal", ItemsHandlingFlags.NoItems, new Version(0, 4, 3),
+                                    tags: new[] { "BK_Picross", "TextOnly" }, requestSlotData: false);
+
+                            lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                        }
+                    }
+                    address.boxClicked(touchPos);
+                    slotName.boxClicked(touchPos);
+                    
+                }
+                if (Mouse.GetState().RightButton.ToString().Equals("Pressed"))
+                {
+                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9 && !Board.board[clickY, clickX])
+                    {
+                        Board.flags[clickY, clickX] = !Board.flags[clickY, clickX];
+                        lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                    }
+                }
+                lastClick = address.boxType(gameTime, lastClick);
+                lastClick = slotName.boxType(gameTime, lastClick);
             }
         }
 
@@ -281,18 +307,22 @@ namespace BK_Picross
 
         public void sendHint()
         {
-            var missing = session.Locations.AllMissingLocations;
-            var alreadyHinted = session.DataStorage.GetHints()
-                .Where(h => h.FindingPlayer == session.ConnectionInfo.Slot)
-                .Select(h => h.LocationId);
-
-            var availableForHinting = missing.Except(alreadyHinted).ToArray();
-
-            if (availableForHinting.Any())
+            if (pendingHints > 0)
             {
-                var locationId = availableForHinting[Board.random.Next(0, availableForHinting.Length)];
+                pendingHints--;
+                var missing = session.Locations.AllMissingLocations;
+                var alreadyHinted = session.DataStorage.GetHints()
+                    .Where(h => h.FindingPlayer == session.ConnectionInfo.Slot)
+                    .Select(h => h.LocationId);
 
-                session.Locations.ScoutLocationsAsync(true, locationId);
+                var availableForHinting = missing.Except(alreadyHinted).ToArray();
+
+                if (availableForHinting.Any())
+                {
+                    var locationId = availableForHinting[Board.random.Next(0, availableForHinting.Length)];
+
+                    session.Locations.ScoutLocationsAsync(true, locationId);
+                }
             }
         }
     }
