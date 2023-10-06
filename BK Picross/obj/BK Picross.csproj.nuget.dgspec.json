@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\OneDrive\\Documents\\bk-picross\\BK Picross\\BK Picross.csproj": {}
+    "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\OneDrive\\Documents\\bk-picross\\BK Picross\\BK Picross.csproj": {
+    "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documents\\bk-picross\\BK Picross\\BK Picross.csproj",
+        "projectUniqueName": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
         "projectName": "BK Picross",
-        "projectPath": "C:\\Users\\user\\OneDrive\\Documents\\bk-picross\\BK Picross\\BK Picross.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\OneDrive\\Documents\\bk-picross\\BK Picross\\obj\\",
+        "projectPath": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
+        "packagesPath": "C:\\Users\\trout\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\trout\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

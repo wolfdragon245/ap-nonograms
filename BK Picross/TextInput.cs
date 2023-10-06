@@ -43,7 +43,7 @@ namespace BK_Picross
         {
             var pos = new Vector2(xCord, yCord);
             var pos2 = new Vector2(0,0);
-            var po3 = new Vector2(xCord+,yCord);
+            var po3 = new Vector2(font.MeasureString(text).X, 0);
             batch.Draw(button, pos, Color.White);
             if (selected)
             {
@@ -253,6 +253,27 @@ namespace BK_Picross
                 if (state.IsKeyDown(Keys.D9))
                 {
                     charEntered('9');
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.Space))
+                {
+                    charEntered(' ');
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.Back))
+                {
+                    text = "";
+                    cursorPos = 0;
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemPeriod))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '>' : '.'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemSemicolon))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? ':' : ';'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
             }
