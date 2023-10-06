@@ -14,7 +14,7 @@ namespace BK_Picross
         int cursorPos;
         bool selected;
         SpriteFont font;
-        Rectangle backRect;
+        Texture2D button;
 
         public TextInput(int x, int y, string startText, int cursorStart)
         {
@@ -22,7 +22,6 @@ namespace BK_Picross
             yCord = y;
             text = startText;
             cursorPos = cursorStart;
-            backRect = new Rectangle();
         }
 
         public void loadFont(SpriteFont importFont)
@@ -30,20 +29,27 @@ namespace BK_Picross
             font = importFont;
         }
 
+        public void loadTexture(Texture2D import)
+        {
+            button = import;
+        }
+
         public string getText()
         {
             return text;
         }
 
-        public void drawBox(SpriteBatch batch)
+        public void drawText(SpriteBatch batch, Texture2D cursorTex)
         {
-            Vector2 pos;
-            backRect.X = xCord;
-            backRect.Y = yCord;
-            backRect.Height = 32;
-            backRect.Width = (int)font.MeasureString(text).X;
-            pos = new Vector2(xCord, yCord);
-            batch.DrawString(font, text, pos, new Microsoft.Xna.Framework.Color(0,0,0));
+            var pos = new Vector2(xCord, yCord);
+            var pos2 = new Vector2(0,0);
+            var po3 = new Vector2(xCord+,yCord);
+            batch.Draw(button, pos, Color.White);
+            if (selected)
+            {
+                batch.DrawString(font, text, pos2, new Microsoft.Xna.Framework.Color(0, 0, 0));
+                batch.Draw(cursorTex, po3, Color.White);
+            }
         }
 
         public void charEntered(char c)
@@ -55,7 +61,7 @@ namespace BK_Picross
 
         public void boxClicked(Vector2 touchPos)
         {
-            if (touchPos.Y >= backRect.Top && touchPos.Y <= backRect.Bottom && touchPos.X >= backRect.Left && touchPos.X <= backRect.Right)
+            if (touchPos.Y >= yCord && touchPos.Y <= yCord+32 && touchPos.X >= xCord && touchPos.X <= xCord+64)
             {
                 selected = true;
             } else
@@ -199,52 +205,52 @@ namespace BK_Picross
                     charEntered((state.IsKeyDown(Keys.LeftShift) ? 'Z' : 'z'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad0))
+                if (state.IsKeyDown(Keys.D0))
                 {
                     charEntered('0');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad1))
+                if (state.IsKeyDown(Keys.D1))
                 {
                     charEntered('1');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad2))
+                if (state.IsKeyDown(Keys.D2))
                 {
                     charEntered('2');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad3))
+                if (state.IsKeyDown(Keys.D3))
                 {
                     charEntered('3');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad4))
+                if (state.IsKeyDown(Keys.D4))
                 {
                     charEntered('4');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad5))
+                if (state.IsKeyDown(Keys.D5))
                 {
                     charEntered('5');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad6))
+                if (state.IsKeyDown(Keys.D6))
                 {
                     charEntered('6');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad7))
+                if (state.IsKeyDown(Keys.D7))
                 {
                     charEntered('7');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad8))
+                if (state.IsKeyDown(Keys.D8))
                 {
                     charEntered('8');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
-                if (state.IsKeyDown(Keys.NumPad9))
+                if (state.IsKeyDown(Keys.D9))
                 {
                     charEntered('9');
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());

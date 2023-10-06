@@ -30,6 +30,7 @@ namespace BK_Picross
         Texture2D zero;
         Texture2D newGameButton;
         Texture2D connectButton;
+        Texture2D cursor;
         Vector2 touchPos;
         int clickY;
         int clickX;
@@ -39,9 +40,8 @@ namespace BK_Picross
         ArchipelagoSession session;
         LoginResult result;
         bool hintSent;
-        int pendingHints;
         TextInput address = new TextInput(500, 128, "archipelago.gg:", 15);
-        TextInput slotName = new TextInput(500, 160, "T", 1);
+        TextInput slotName = new TextInput(500, 160, "", 0);
 
         public BKPicross()
         {
@@ -57,6 +57,7 @@ namespace BK_Picross
             _graphics.ApplyChanges();
             Board localboard = new Board();
             touchPos = new Vector2();
+            hintSent = false;
 
             base.Initialize();
         }
@@ -79,8 +80,11 @@ namespace BK_Picross
             zero = Content.Load<Texture2D>("0");
             newGameButton = Content.Load<Texture2D>("new_game_button");
             connectButton = Content.Load<Texture2D>("connect");
+            cursor = Content.Load<Texture2D>("cursor");
             address.loadFont(Content.Load<SpriteFont>("File"));
+            address.loadTexture(Content.Load<Texture2D>("port"));
             slotName.loadFont(Content.Load<SpriteFont>("File"));
+            slotName.loadTexture(Content.Load<Texture2D>("slot"));
         }
 
         protected override void Update(GameTime gameTime)
@@ -100,11 +104,10 @@ namespace BK_Picross
                 Board.clearFlag();
                 if (!hintSent)
                 {
-                    pendingHints++;
+                    sendHint();
                     hintSent = true;
                 }
             }
-            sendHint();
 
             base.Update(gameTime);
         }
@@ -138,8 +141,8 @@ namespace BK_Picross
             {
                     _spriteBatch.Draw(connectButton, new Vector2(500, 64), Color.White);
             }
-            address.drawBox(_spriteBatch);
-            slotName.drawBox(_spriteBatch);
+            address.drawText(_spriteBatch, cursor);
+            slotName.drawText(_spriteBatch, cursor);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -214,7 +217,7 @@ namespace BK_Picross
                         if (touchPos.Y >= 64 && touchPos.Y <= 96 && touchPos.X >= 500 && touchPos.X <= 564)
                         {
                             session = ArchipelagoSessionFactory.CreateSession(address.getText());
-                            result = session.TryConnectAndLogin("", "Ospideal", ItemsHandlingFlags.NoItems, new Version(0, 4, 3),
+                            result = session.TryConnectAndLogin("", slotName.getText(), ItemsHandlingFlags.NoItems, new Version(0, 4, 3),
                                     tags: new[] { "BK_Picross", "TextOnly" }, requestSlotData: false);
 
                             lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
@@ -307,22 +310,18 @@ namespace BK_Picross
 
         public void sendHint()
         {
-            if (pendingHints > 0)
+            var missing = session.Locations.AllMissingLocations;
+            var alreadyHinted = session.DataStorage.GetHints()
+                .Where(h => h.FindingPlayer == session.ConnectionInfo.Slot)
+                .Select(h => h.LocationId);
+
+            var availableForHinting = missing.Except(alreadyHinted).ToArray();
+
+            if (availableForHinting.Any())
             {
-                pendingHints--;
-                var missing = session.Locations.AllMissingLocations;
-                var alreadyHinted = session.DataStorage.GetHints()
-                    .Where(h => h.FindingPlayer == session.ConnectionInfo.Slot)
-                    .Select(h => h.LocationId);
+                var locationId = availableForHinting[Board.random.Next(0, availableForHinting.Length)];
 
-                var availableForHinting = missing.Except(alreadyHinted).ToArray();
-
-                if (availableForHinting.Any())
-                {
-                    var locationId = availableForHinting[Board.random.Next(0, availableForHinting.Length)];
-
-                    session.Locations.ScoutLocationsAsync(true, locationId);
-                }
+                session.Locations.ScoutLocationsAsync(true, locationId);
             }
         }
     }

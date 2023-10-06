@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/ce3300/Documents/GitHub/bk-picross/BK Picross/Content/empty.png</SourceFile>
-  <SourceTime>2023-10-02T08:24:51.2563267-04:00</SourceTime>
-  <DestFile>C:/Users/ce3300/Documents/GitHub/bk-picross/BK Picross/Content/bin/DesktopGL/Content/empty.xnb</DestFile>
-  <DestTime>2023-10-06T07:58:38.172163-04:00</DestTime>
+  <SourceFile>C:/Users/user/OneDrive/Documents/bk-picross/BK Picross/Content/empty.png</SourceFile>
+  <SourceTime>2023-10-05T11:40:19.8674185-04:00</SourceTime>
+  <DestFile>C:/Users/user/OneDrive/Documents/bk-picross/BK Picross/Content/bin/DesktopGL/Content/empty.xnb</DestFile>
+  <DestTime>2023-10-06T11:19:06.5311729-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
