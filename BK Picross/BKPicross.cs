@@ -107,7 +107,7 @@ namespace BK_Picross
             inputHandle(gameTime);
             if (Board.checkBoard())
             {
-                color = Color.Lime;
+                color = Color.LimeGreen;
                 Board.clearFlag();
                 if (!hintSent && result != null)
                 {
