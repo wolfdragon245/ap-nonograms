@@ -109,7 +109,7 @@ namespace BK_Picross
             {
                 color = Color.Lime;
                 Board.clearFlag();
-                if (!hintSent && result == null)
+                if (!hintSent && result != null)
                 {
                     sendHint();
                     hintSent = true;
