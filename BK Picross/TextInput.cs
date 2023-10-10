@@ -42,8 +42,8 @@ namespace BK_Picross
         public void drawText(SpriteBatch batch, Texture2D cursorTex)
         {
             var pos = new Vector2(xCord, yCord);
-            var pos2 = new Vector2(0,0);
-            var po3 = new Vector2(font.MeasureString(text).X, 0);
+            var pos2 = new Vector2(5,496);
+            var po3 = new Vector2(5+font.MeasureString(text).X, 496);
             batch.Draw(button, pos, Color.White);
             if (selected)
             {
@@ -207,52 +207,52 @@ namespace BK_Picross
                 }
                 if (state.IsKeyDown(Keys.D0))
                 {
-                    charEntered('0');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? ')' : '0'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D1))
                 {
-                    charEntered('1');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '!' : '1'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D2))
                 {
-                    charEntered('2');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '@' : '2'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D3))
                 {
-                    charEntered('3');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '#' : '3'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D4))
                 {
-                    charEntered('4');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '$' : '4'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D5))
                 {
-                    charEntered('5');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '%' : '5'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D6))
                 {
-                    charEntered('6');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '^' : '6'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D7))
                 {
-                    charEntered('7');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '&' : '7'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D8))
                 {
-                    charEntered('8');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '*' : '8'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.D9))
                 {
-                    charEntered('9');
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '(' : '9'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
                 if (state.IsKeyDown(Keys.Space))
@@ -262,6 +262,14 @@ namespace BK_Picross
                 }
                 if (state.IsKeyDown(Keys.Back))
                 {
+                    if (cursorPos > 0)
+                    {
+                        text = text.Remove(text.Length - 1, 1);
+                        cursorPos--;
+                        return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                    }
+                }
+                if (state.IsKeyDown(Keys.Delete)){
                     text = "";
                     cursorPos = 0;
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
@@ -271,9 +279,54 @@ namespace BK_Picross
                     charEntered((state.IsKeyDown(Keys.LeftShift) ? '>' : '.'));
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
+                if (state.IsKeyDown(Keys.OemComma))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '<' : ','));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemQuestion))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '?' : '/'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
                 if (state.IsKeyDown(Keys.OemSemicolon))
                 {
                     charEntered((state.IsKeyDown(Keys.LeftShift) ? ':' : ';'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemQuotes))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '"' : '\''));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemOpenBrackets))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '{' : '['));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemCloseBrackets))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '}' : ']'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemPipe))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '|' : '\\'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemMinus))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '_' : '-'));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.OemPlus))
+                {
+                    charEntered((state.IsKeyDown(Keys.LeftShift) ? '+' : '='));
+                    return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
+                }
+                if (state.IsKeyDown(Keys.Enter))
+                {
+                    selected = false;
                     return Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                 }
             }

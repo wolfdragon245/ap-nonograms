@@ -139,3 +139,7 @@ C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.pdb
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.genruntimeconfig.cache
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\ref\BK Picross.dll
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\cursor.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\port.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\slot.xnb
+C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\password.xnb

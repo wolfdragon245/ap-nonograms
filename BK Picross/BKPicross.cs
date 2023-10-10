@@ -35,13 +35,15 @@ namespace BK_Picross
         int clickY;
         int clickX;
         int row;
+        int puzzleSize;
         double lastClick;
         Color color;
         ArchipelagoSession session;
         LoginResult result;
         bool hintSent;
-        TextInput address = new TextInput(500, 128, "archipelago.gg:", 15);
-        TextInput slotName = new TextInput(500, 160, "", 0);
+        TextInput address = new TextInput(0, 64, "archipelago.gg:", 15);
+        TextInput slotName = new TextInput(64, 0, "", 0);
+        TextInput password = new TextInput(64, 32, "", 0);
 
         public BKPicross()
         {
@@ -52,12 +54,15 @@ namespace BK_Picross
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 700;
-            _graphics.PreferredBackBufferHeight = 513;
+            _graphics.PreferredBackBufferWidth = 496;
+            _graphics.PreferredBackBufferHeight = 544;
+            //_graphics.PreferredBackBufferWidth = 736;
+            //_graphics.PreferredBackBufferHeight = 784;
             _graphics.ApplyChanges();
             Board localboard = new Board();
             touchPos = new Vector2();
             hintSent = false;
+            puzzleSize = 1;
 
             base.Initialize();
         }
@@ -85,6 +90,8 @@ namespace BK_Picross
             address.loadTexture(Content.Load<Texture2D>("port"));
             slotName.loadFont(Content.Load<SpriteFont>("File"));
             slotName.loadTexture(Content.Load<Texture2D>("slot"));
+            password.loadFont(Content.Load<SpriteFont>("File"));
+            password.loadTexture(Content.Load<Texture2D>("password")); 
         }
 
         protected override void Update(GameTime gameTime)
@@ -102,7 +109,7 @@ namespace BK_Picross
             {
                 color = Color.Lime;
                 Board.clearFlag();
-                if (!hintSent)
+                if (!hintSent && result == null)
                 {
                     sendHint();
                     hintSent = true;
@@ -136,13 +143,14 @@ namespace BK_Picross
             }
             verticalNums();
             horizontalNums();
-            _spriteBatch.Draw(newGameButton, new Vector2(500,32), Color.White);
+            _spriteBatch.Draw(newGameButton, new Vector2(0,0), Color.White);
             if (result == null || !result.Successful)
             {
-                    _spriteBatch.Draw(connectButton, new Vector2(500, 64), Color.White);
+                    _spriteBatch.Draw(connectButton, new Vector2(0, 32), Color.White);
             }
             address.drawText(_spriteBatch, cursor);
             slotName.drawText(_spriteBatch, cursor);
+            password.drawText(_spriteBatch, cursor);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -199,12 +207,12 @@ namespace BK_Picross
             {
                 if (Mouse.GetState().LeftButton.ToString().Equals("Pressed"))
                 {
-                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9)
+                    if (clickY >= 0 && clickY <= Board.board.GetLength(0)-1 && clickX >= 0 && clickX <= Board.board.GetLength(1) - 1 && !Board.flags[clickY, clickX])
                     {
                         Board.board[clickY, clickX] = !Board.board[clickY, clickX];
                         lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                     }
-                    if (touchPos.Y >= 32 && touchPos.Y <= 64 && touchPos.X >= 500 && touchPos.X <= 564)
+                    if (touchPos.Y >= 0 && touchPos.Y <= 32 && touchPos.X >= 0 && touchPos.X <= 64)
                     {
                         Board.clearBoard();
                         Board.randomizeSolution();
@@ -214,22 +222,23 @@ namespace BK_Picross
                     }
                     if (result == null || !result.Successful)
                     {
-                        if (touchPos.Y >= 64 && touchPos.Y <= 96 && touchPos.X >= 500 && touchPos.X <= 564)
+                        if (touchPos.Y >= 32 && touchPos.Y <= 64 && touchPos.X >= 0 && touchPos.X <= 64)
                         {
                             session = ArchipelagoSessionFactory.CreateSession(address.getText());
                             result = session.TryConnectAndLogin("", slotName.getText(), ItemsHandlingFlags.NoItems, new Version(0, 4, 3),
-                                    tags: new[] { "BK_Picross", "TextOnly" }, requestSlotData: false);
+                                    tags: new[] { "BK_Picross", "TextOnly" }, requestSlotData: false, password: password.getText());
 
                             lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
                         }
                     }
                     address.boxClicked(touchPos);
                     slotName.boxClicked(touchPos);
+                    password.boxClicked(touchPos);
                     
                 }
                 if (Mouse.GetState().RightButton.ToString().Equals("Pressed"))
                 {
-                    if (clickY >= 0 && clickY <= 9 && clickX >= 0 && clickX <= 9 && !Board.board[clickY, clickX])
+                    if (clickY >= 0 && clickY <= Board.flags.GetLength(0) - 1 && clickX >= 0 && clickX <= Board.flags.GetLength(0) - 1 && !Board.board[clickY, clickX])
                     {
                         Board.flags[clickY, clickX] = !Board.flags[clickY, clickX];
                         lastClick = Convert.ToDouble(gameTime.TotalGameTime.TotalMilliseconds.ToString());
@@ -237,6 +246,7 @@ namespace BK_Picross
                 }
                 lastClick = address.boxType(gameTime, lastClick);
                 lastClick = slotName.boxType(gameTime, lastClick);
+                lastClick = password.boxType(gameTime, lastClick);
             }
         }
 
