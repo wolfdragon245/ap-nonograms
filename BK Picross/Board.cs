@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Archipelago.MultiClient.Net.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -112,9 +113,17 @@ namespace BK_Picross
                         hint.Add(0);
                     }
                 }
-                if (hint != check)
+                for (int i = 0;i < check.Count; i++)
                 {
-                    valid = false;
+                    if (check.Count < hint.Count || check.Count > hint.Count)
+                    {
+                        valid = false;
+                        break;
+                    }
+                    if (hint[i] != check[i])
+                    {
+                        valid = false;
+                    }
                 }
                 check.Clear();
                 hint.Clear();
@@ -172,9 +181,17 @@ namespace BK_Picross
                         hint.Add(0);
                     }
                 }
-                if (check != hint)
+                for (int i = 0; i < check.Count; i++)
                 {
-                    valid = false;
+                    if (check.Count < hint.Count || check.Count > hint.Count)
+                    {
+                        valid = false;
+                        break;
+                    }
+                    if (hint[i] != check[i])
+                    {
+                        valid = false;
+                    }
                 }
                 check.Clear();
                 hint.Clear();

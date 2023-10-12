@@ -126,13 +126,6 @@ namespace BK_Picross
             _spriteBatch.Begin();
             verticalNums();
             horizontalNums();
-            for (int k = 0; k < Board.boardSolution.GetLength(0); k++)
-            {
-                for (int i = 0; i < Board.boardSolution.GetLength(1); i++)
-                {
-                    _spriteBatch.Draw((Board.boardSolution[k, i]) ? mark : empty, new Vector2(160 + (32 * i), 160 + (32 * k)), Color.White);
-                }
-            }
             for (int k = 0; k < Board.board.GetLength(0); k++)
             {
                 for ( int i = 0; i < Board.board.GetLength(1); i++)

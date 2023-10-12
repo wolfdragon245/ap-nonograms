@@ -227,19 +227,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ce3300\\.nuget\\packages\\": {}
+    "C:\\Users\\trout\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ce3300\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
+      "projectUniqueName": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
       "projectName": "BK Picross",
-      "projectPath": "C:\\Users\\ce3300\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
-      "packagesPath": "C:\\Users\\ce3300\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ce3300\\Documents\\GitHub\\bk-picross\\BK Picross\\obj\\",
+      "projectPath": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
+      "packagesPath": "C:\\Users\\trout\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ce3300\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\trout\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
