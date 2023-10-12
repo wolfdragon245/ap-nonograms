@@ -198,8 +198,8 @@ namespace BK_Picross
                     _spriteBatch.Draw(nine, cords, Color.White);
                     break;
                 case 10:
-                    _spriteBatch.Draw(zero, cords, Color.White);
-                    _spriteBatch.Draw(one, new Vector2(cords.X-16,cords.Y), Color.White);
+                    _spriteBatch.Draw(zero, new Vector2(cords.X+8,cords.Y), Color.White);
+                    _spriteBatch.Draw(one, new Vector2(cords.X-8,cords.Y), Color.White);
                     break;
             }
         }

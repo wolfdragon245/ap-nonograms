@@ -46,3 +46,4 @@ C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Release\net6.
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Release\net6.0\BK Picross.pdb
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Release\net6.0\BK Picross.genruntimeconfig.cache
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Release\net6.0\ref\BK Picross.dll
+C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\bin\Release\net6.0\Content\password.xnb
