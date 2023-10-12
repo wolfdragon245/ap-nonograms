@@ -130,7 +130,7 @@ namespace BK_Picross
             {
                 for (int i = 0; i < Board.boardSolution.GetLength(1); i++)
                 {
-                    _spriteBatch.Draw((Board.boardSolution[k, i]) ? fill : empty, new Vector2(160 + (32 * i), 160 + (32 * k)), Color.White);
+                    _spriteBatch.Draw((Board.boardSolution[k, i]) ? mark : empty, new Vector2(160 + (32 * i), 160 + (32 * k)), Color.White);
                 }
             }
             for (int k = 0; k < Board.board.GetLength(0); k++)
@@ -287,7 +287,6 @@ namespace BK_Picross
                 {
                     writeNums(hints[i], new Vector2(128-(32*i),160+(32*k)));
                 }
-                Board.addVertNums(hints);
                 hints.Clear();
             }
         }
@@ -322,7 +321,6 @@ namespace BK_Picross
                 {
                     writeNums(hints[i], new Vector2(160 + (32 * k), 128-(32 * i)));
                 }
-                Board.horzNums.Add(hints);
                 hints.Clear();
             }
         }

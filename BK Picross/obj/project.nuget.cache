@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "k3FGVIi/uqVihCWc42ovdzI7EAwg8WPZk7JVBLNOhE/m+TEdHDM+mgXCwi4zJXVFkRuPyWvAIPRFKYwjtqAkew==",
+  "dgSpecHash": "a/9cxFywruX55+T/dFPeM+j3FMYkCZxzhuKbLXoWujldy8WuKZIX8ee9LSMscpvwuUV4jbdQmtGscAjemqcHGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\trout\\OneDrive\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
+  "projectFilePath": "C:\\Users\\ce3300\\Documents\\GitHub\\bk-picross\\BK Picross\\BK Picross.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\trout\\.nuget\\packages\\archipelago.multiclient.net\\5.0.6\\archipelago.multiclient.net.5.0.6.nupkg.sha512",
-    "C:\\Users\\trout\\.nuget\\packages\\castle.core\\3.3.0\\castle.core.3.3.0.nupkg.sha512",
-    "C:\\Users\\trout\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\trout\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\trout\\.nuget\\packages\\teststack.white\\0.13.3\\teststack.white.0.13.3.nupkg.sha512"
+    "C:\\Users\\ce3300\\.nuget\\packages\\archipelago.multiclient.net\\5.0.6\\archipelago.multiclient.net.5.0.6.nupkg.sha512",
+    "C:\\Users\\ce3300\\.nuget\\packages\\castle.core\\3.3.0\\castle.core.3.3.0.nupkg.sha512",
+    "C:\\Users\\ce3300\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\ce3300\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\ce3300\\.nuget\\packages\\teststack.white\\0.13.3\\teststack.white.0.13.3.nupkg.sha512"
   ],
   "logs": [
     {

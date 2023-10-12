@@ -11,8 +11,6 @@ namespace BK_Picross
         public static bool[,] board = new bool[10,10];
         public static bool[,] flags = new bool[10,10];
         public static bool[,] boardSolution = new bool[10,10];
-        public static List<List<int>> vertNums = new List<List<int>>();
-        public static List<List<int>> horzNums = new List<List<int>>();
         public static Random random = new Random();
 
         public Board()
@@ -22,16 +20,12 @@ namespace BK_Picross
 
         public static bool checkBoard()
         {
-            if (vertNums.Count > 1 || horzNums.Count > 1)
+            bool valid = false;
+            if (vertCheck() && horzCheck())
             {
-                bool valid = false;
-                if (vertCheck() && horzCheck())
-                {
-                    valid = true;
-                }
-                return valid;
+                valid = true;
             }
-            return false;
+            return valid;
         }
 
         public static void clearBoard()
@@ -73,6 +67,7 @@ namespace BK_Picross
             int row = 0;
             bool valid = true;
             List<int> check = new List<int>();
+            List<int> hint = new List<int>();
             for (int k = 0; k < board.GetLength(0); k++)
             {
                 for (int i = board.GetLength(1) - 1; i >= 0; i--)
@@ -96,12 +91,33 @@ namespace BK_Picross
                         check.Add(0);
                     }
                 }
-                vertNums.Count();
-                if (check != vertNums[0])
+                for (int i = boardSolution.GetLength(1) - 1; i >= 0; i--)
+                {
+                    if (boardSolution[k, i])
+                    {
+                        row++;
+                    }
+                    else if (row > 0)
+                    {
+                        hint.Add(row);
+                        row = 0;
+                    }
+                    if (i == 0 && boardSolution[k, i])
+                    {
+                        hint.Add(row);
+                        row = 0;
+                    }
+                    if (i == 0 && check.Count <= 0)
+                    {
+                        hint.Add(0);
+                    }
+                }
+                if (hint != check)
                 {
                     valid = false;
                 }
                 check.Clear();
+                hint.Clear();
             }
             return valid;
         }
@@ -111,6 +127,7 @@ namespace BK_Picross
             int row = 0;
             bool valid = true;
             List<int> check = new List<int>();
+            List<int> hint = new List<int>();
             for (int k = board.GetLength(1) - 1; k >= 0; k--)
             {
                 for (int i = board.GetLength(0) - 1; i >= 0; i--)
@@ -134,18 +151,35 @@ namespace BK_Picross
                         check.Add(0);
                     }
                 }
-                if (check != horzNums[k])
+                for (int i = boardSolution.GetLength(0) - 1; i >= 0; i--)
+                {
+                    if (boardSolution[i, k])
+                    {
+                        row++;
+                    }
+                    else if (row > 0)
+                    {
+                        hint.Add(row);
+                        row = 0;
+                    }
+                    if (i == 0 && boardSolution[i, k])
+                    {
+                        hint.Add(row);
+                        row = 0;
+                    }
+                    if (i == 0 && hint.Count <= 0)
+                    {
+                        hint.Add(0);
+                    }
+                }
+                if (check != hint)
                 {
                     valid = false;
                 }
                 check.Clear();
+                hint.Clear();
             }
             return valid;
-        }
-
-        public static void addVertNums(List<int> import)
-        {
-            vertNums.Add(import);
         }
     }
 }
