@@ -1,4 +1,4 @@
-# 10/??/23 Update
+# 10/17/23 Update
 - Added password support
 - Rearranged GUI
 - Children no longer are forced to stay in school during a meteor strike
