@@ -144,3 +144,5 @@ C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\
 C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\slot.xnb
 C:\Users\ce3300\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\password.xnb
 C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\bin\Debug\net6.0\Content\password.xnb
+C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK_Picross.Properties.Resources.resources
+C:\Users\trout\OneDrive\Documents\GitHub\bk-picross\BK Picross\obj\Debug\net6.0\BK Picross.csproj.GenerateResource.cache

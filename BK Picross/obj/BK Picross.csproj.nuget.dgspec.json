@@ -51,10 +51,6 @@
             "MonoGame.Framework.DesktopGL": {
               "target": "Package",
               "version": "[3.8.1.303, )"
-            },
-            "TestStack.White": {
-              "target": "Package",
-              "version": "[0.13.3, )"
             }
           },
           "imports": [
