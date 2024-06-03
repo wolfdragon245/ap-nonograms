@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpt3hxp7kam2h"]
+[gd_scene load_steps=3 format=3 uid="uid://cpt3hxp7kam2h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_xu6yw"]
+[ext_resource type="PackedScene" uid="uid://cle75bwenn2k" path="res://Scenes/text_client_window.tscn" id="2_5qwqg"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xu6yw")
+
+[node name="Text Client Window" parent="." instance=ExtResource("2_5qwqg")]
+visible = false
 
 [node name="Disconnect" type="Button" parent="."]
 visible = false
