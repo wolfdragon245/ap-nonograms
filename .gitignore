@@ -1,9 +1,2 @@
-Bk Picross/bin/
-*.v2
-*.v2
-*.vsidx
-BK Picross/.vs/BK Picross/v17/.futdcache.v2
-*.mgcontent
-*.cache
-*.dll
-*.pdb
+# Godot 4+ specific ignores
+.godot/
