@@ -1,0 +1,28 @@
+title "Black Cat"
+by "Moonlight2095"
+width 10
+height 10
+
+rows
+1,1,2
+5,4
+5,1,1
+1,1,1,1
+6,1
+7,1
+8
+7
+7
+8
+
+columns
+5
+2,2
+6,1
+2,6
+10
+6
+2,5
+2,5
+2,4
+9
