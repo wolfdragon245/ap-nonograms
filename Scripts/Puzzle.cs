@@ -215,16 +215,28 @@ public partial class Puzzle : Control
 				}
 			}
 
-			if (num > 0)
+			if (num > 0 || (num == 0 && nums.Count == 0))
 			{
 				nums.Add(num);
 			}
 
 			List<int> checkNums = _vertNums[i];
-			checkNums.Reverse();
+			//checkNums.Reverse();
 			if (!_checkLists(nums, checkNums))
 			{
 				valid = false;
+				GD.Print("Failed On Row: " + i);
+				GD.Print("Nums:");
+				foreach (var number in nums)
+				{
+					GD.Print(number);
+				}
+				GD.Print("Check Nums:");
+				foreach (var number in checkNums)
+				{
+					GD.Print(number);
+				}
+				GD.Print("");
 			}
 		}
 		
@@ -254,7 +266,7 @@ public partial class Puzzle : Control
 				}
 			}
 
-			if (num > 0)
+			if (num > 0 || (num == 0 && nums.Count == 0))
 			{
 				nums.Add(num);
 			}
@@ -263,6 +275,18 @@ public partial class Puzzle : Control
 			if (!_checkLists(nums, checkNums))
 			{
 				valid = false;
+				GD.Print("Failed On Column: " + i);
+				GD.Print("Nums:");
+				foreach (var number in nums)
+				{
+					GD.Print(number);
+				}
+				GD.Print("Check Nums:");
+				foreach (var number in checkNums)
+				{
+					GD.Print(number);
+				}
+				GD.Print("");
 			}
 		}
 
@@ -284,7 +308,7 @@ public partial class Puzzle : Control
 				x = 0;
 			}
 		}
-		_printBoard();
+		//_printBoard();
 	}
 
 	private void _printBoard()
