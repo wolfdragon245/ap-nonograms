@@ -55,7 +55,7 @@ public partial class Main : Node2D
 		{
 			if (_puzzle.CheckBoard())
 			{
-				_puzzle.GetParent<Window>().Visible = false;
+				_puzzle.GetParent<Window>().Title = _puzzle.Title + " By: " + _puzzle.Author;
 				Hint();
 			}
 			else
@@ -74,7 +74,7 @@ public partial class Main : Node2D
 		_disconnect.Visible = Universal.Connected;
 
 		_new.Visible = Universal.Connected && _puzzlesReady;
-		_check.Visible = Universal.Connected && _puzzle.GetParent<Window>().Visible;
+		_check.Visible = Universal.Connected && _puzzle.GetParent<Window>().Visible && !_puzzle.Solved;
 	}
 	
 	public void Connect(String ip, String slot, String password)
