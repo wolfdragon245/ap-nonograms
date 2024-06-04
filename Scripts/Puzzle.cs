@@ -306,6 +306,7 @@ public partial class Puzzle : Control
 			}
 			GD.Print(toPrint);
 		}
+		GD.Print("");
 	}
 
 	private bool _checkLists(List<int> list1, List<int> list2)
