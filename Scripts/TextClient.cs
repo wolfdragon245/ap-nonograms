@@ -30,6 +30,11 @@ public partial class TextClient : Control
 		_display.PushMessage(message);
 	}
 
+	public void PushMessage(String message)
+	{
+		_display.PushMessage(message);
+	}
+
 	public void ClearText()
 	{
 		_display.ClearMessages();

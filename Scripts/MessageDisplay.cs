@@ -8,6 +8,11 @@ public partial class MessageDisplay : RichTextLabel
 	{
 		CallDeferred("_pushMessage", message + "\n");
 	}
+	
+	public void PushMessage(String message)
+	{
+		CallDeferred("_pushMessage", message + "\n");
+	}
 
 	public void ClearMessages()
 	{

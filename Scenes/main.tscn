@@ -50,3 +50,10 @@ offset_top = 96.0
 offset_right = 400.0
 offset_bottom = 127.0
 text = "New Puzzle"
+
+[node name="Check" type="Button" parent="."]
+offset_left = 248.0
+offset_top = 96.0
+offset_right = 303.0
+offset_bottom = 127.0
+text = "Check"

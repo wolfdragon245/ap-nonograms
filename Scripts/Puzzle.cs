@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using APNonograms.Scripts;
 using FileAccess = Godot.FileAccess;
@@ -151,6 +152,7 @@ public partial class Puzzle : Control
 
 		GetParent<Window>().Size =
 			(Vector2I)_boardRender.Position + (new Vector2I(_board.GetLength(0), _board.GetLength(1)) * 32);
+		GetParent<Window>().Title = Title + " By: " + Author;
 		GetParent<Window>().Visible = true;
 	}
 
@@ -179,5 +181,142 @@ public partial class Puzzle : Control
 		}
 		_horzRender.Position = Vector2.Zero;
 		_vertRender.Position = Vector2.Zero;
+	}
+
+	public bool CheckBoard()
+	{
+		_getBoard();
+		bool valid = true;
+		for (int i = 0; i < _board.GetLength(0); i++)
+		{
+			List<int> nums = new List<int>();
+			bool counting = false;
+			int num = 0;
+			for (int k = 0; k < _board.GetLength(1); k++)
+			{
+				if (counting && _board[i, k])
+				{
+					num++;
+				}
+				
+				if (!counting && _board[i, k])
+				{
+					counting = true;
+					num++;
+				}
+
+				if (counting && !_board[i, k])
+				{
+					counting = false;
+					nums.Add(num);
+					num = 0;
+				}
+			}
+
+			if (num > 0)
+			{
+				nums.Add(num);
+			}
+
+			List<int> checkNums = _vertNums[i];
+			checkNums.Reverse();
+			if (!_checkLists(nums, checkNums))
+			{
+				valid = false;
+			}
+		}
+		
+		for (int i = 0; i < _board.GetLength(1); i++)
+		{
+			List<int> nums = new List<int>();
+			bool counting = false;
+			int num = 0;
+			for (int k = 0; k < _board.GetLength(0); k++)
+			{
+				if (counting && _board[k, i])
+				{
+					num++;
+				}
+				
+				if (!counting && _board[k, i])
+				{
+					counting = true;
+					num++;
+				}
+
+				if (counting && !_board[k, i])
+				{
+					counting = false;
+					nums.Add(num);
+					num = 0;
+				}
+			}
+
+			if (num > 0)
+			{
+				nums.Add(num);
+			}
+
+			List<int> checkNums = _horzNums[i];
+			if (!_checkLists(nums, checkNums))
+			{
+				valid = false;
+			}
+		}
+
+		return valid;
+	}
+
+	private void _getBoard()
+	{
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i < _boardRender.GetChildCount(); i++)
+		{
+			_board[y, x] = _boardRender.GetChild<NonogramCell>(i).ButtonPressed;
+			x++;
+			if (x == _board.GetLength(0))
+			{
+				y++;
+				x = 0;
+			}
+		}
+		_printBoard();
+	}
+
+	private void _printBoard()
+	{
+		String toPrint;
+		for (int i = 0; i < _board.GetLength(0); i++)
+		{
+			toPrint = "";
+			for (int k = 0; k < _board.GetLength(1); k++)
+			{
+				if (_board[i,k])
+				{
+					toPrint += "#";
+				}
+				else
+				{
+					toPrint += "O";
+				}
+			}
+			GD.Print(toPrint);
+		}
+	}
+
+	private bool _checkLists(List<int> list1, List<int> list2)
+	{
+		if (list1.Count != list2.Count) return false;
+		bool valid = true;
+		for (int i = 0; i < list1.Count; i++)
+		{
+			if (list1[i] != list2[i])
+			{
+				valid = false;
+			}
+		}
+
+		return valid;
 	}
 }

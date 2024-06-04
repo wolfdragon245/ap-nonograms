@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using System.Net.Http;
 using APNonograms.Scripts;
 using Archipelago.MultiClient.Net;
@@ -12,6 +13,7 @@ public partial class Main : Node2D
 	private Button _connect;
 	private Button _disconnect;
 	private Button _new;
+	private Button _check;
 	private LineEdit _ip;
 	private LineEdit _slot;
 	private LineEdit _password;
@@ -26,6 +28,7 @@ public partial class Main : Node2D
 		_connect = GetNode<Button>("Connect");
 		_disconnect = GetNode<Button>("Disconnect");
 		_new = GetNode<Button>("New");
+		_check = GetNode<Button>("Check");
 		_ip = GetNode<LineEdit>("IP");
 		_slot = GetNode<LineEdit>("Slot");
 		_password = GetNode<LineEdit>("Password");
@@ -48,6 +51,19 @@ public partial class Main : Node2D
 			_puzzle.MakeBoard(SelectPuzzle());
 		};
 
+		_check.Pressed += () =>
+		{
+			if (_puzzle.CheckBoard())
+			{
+				_puzzle.GetParent<Window>().Visible = false;
+				Hint();
+			}
+			else
+			{
+				_textClient.PushMessage("[color=red]Your solution is incorrect[/color]");
+			}
+		};
+
 		GetPuzzles();
 	}
 
@@ -58,6 +74,7 @@ public partial class Main : Node2D
 		_disconnect.Visible = Universal.Connected;
 
 		_new.Visible = Universal.Connected && _puzzlesReady;
+		_check.Visible = Universal.Connected && _puzzle.GetParent<Window>().Visible;
 	}
 	
 	public void Connect(String ip, String slot, String password)
@@ -90,6 +107,7 @@ public partial class Main : Node2D
 	{
 		Universal.Session.Socket.DisconnectAsync();
 		_textClient.GetParent<Window>().Visible = false;
+		_puzzle.GetParent<Window>().Visible = false;
 		Universal.Connected = false;
 	}
 
@@ -126,5 +144,22 @@ public partial class Main : Node2D
 	public String SelectPuzzle()
 	{
 		return "user://Puzzles/" + _puzzles[GD.RandRange(0, _puzzles.Length - 1)];
+	}
+
+	public void Hint()
+	{
+		var missing = Universal.Session.Locations.AllMissingLocations;
+		var alreadyHinted = Universal.Session.DataStorage.GetHints()
+			.Where(h => h.FindingPlayer == Universal.Session.ConnectionInfo.Slot)
+			.Select(h => h.LocationId);
+
+		var availableForHinting = missing.Except(alreadyHinted).ToArray();
+
+		if (availableForHinting.Any())
+		{
+			var locationId = availableForHinting[GD.RandRange(0, availableForHinting.Length)];
+
+			Universal.Session.Locations.ScoutLocationsAsync(true, locationId);
+		}
 	}
 }
