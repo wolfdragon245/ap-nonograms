@@ -9,6 +9,11 @@ public partial class MessageDisplay : RichTextLabel
 		CallDeferred("_pushMessage", message + "\n");
 	}
 
+	public void ClearMessages()
+	{
+		Text = "[color=black]";
+	}
+
 	private void _pushMessage(Variant messgae)
 	{
 		AppendText(messgae.AsString());

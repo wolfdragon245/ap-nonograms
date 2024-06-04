@@ -29,4 +29,9 @@ public partial class TextClient : Control
 	{
 		_display.PushMessage(message);
 	}
+
+	public void ClearText()
+	{
+		_display.ClearMessages();
+	}
 }

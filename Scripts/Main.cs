@@ -8,21 +8,25 @@ public partial class Main : Node2D
 {
 	private Button _connect;
 	private Button _disconnect;
+	private Button _new;
 	private LineEdit _ip;
 	private LineEdit _slot;
 	private LineEdit _password;
 	private TextClient _textClient;
+	private Puzzle _puzzle;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_connect = GetNode<Button>("Connect");
 		_disconnect = GetNode<Button>("Disconnect");
+		_new = GetNode<Button>("New");
 		_ip = GetNode<LineEdit>("IP");
 		_slot = GetNode<LineEdit>("Slot");
 		_password = GetNode<LineEdit>("Password");
 		
 		_textClient = FindChild("Text Client") as TextClient;
+		_puzzle = FindChild("Puzzle") as Puzzle;
 
 		_connect.Pressed += () =>
 		{
@@ -32,6 +36,11 @@ public partial class Main : Node2D
 		_disconnect.Pressed += () =>
 		{
 			Disconnect();
+		};
+
+		_new.Pressed += () =>
+		{
+			_puzzle.MakeBoard("res://Assets/Puzzles/LingoSmile.txt");
 		};
 	}
 
@@ -65,6 +74,7 @@ public partial class Main : Node2D
 			_textClient.GetParent<Window>().Visible = true;
 		}
 		Universal.Connected = result.Successful;
+		_textClient.ClearText();
 	}
 	
 	public void Disconnect()

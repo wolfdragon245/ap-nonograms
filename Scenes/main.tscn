@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpt3hxp7kam2h"]
+[gd_scene load_steps=4 format=3 uid="uid://cpt3hxp7kam2h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_xu6yw"]
 [ext_resource type="PackedScene" uid="uid://cle75bwenn2k" path="res://Scenes/text_client_window.tscn" id="2_5qwqg"]
+[ext_resource type="PackedScene" uid="uid://dy6prygnqm0qb" path="res://Scenes/puzzle_window.tscn" id="3_5otpo"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xu6yw")
 
 [node name="Text Client Window" parent="." instance=ExtResource("2_5qwqg")]
+visible = false
+
+[node name="Puzzle Window" parent="." instance=ExtResource("3_5otpo")]
 visible = false
 
 [node name="Disconnect" type="Button" parent="."]
@@ -39,3 +43,10 @@ offset_top = 64.0
 offset_right = 400.0
 offset_bottom = 95.0
 placeholder_text = "Password"
+
+[node name="New" type="Button" parent="."]
+offset_left = 304.0
+offset_top = 96.0
+offset_right = 400.0
+offset_bottom = 127.0
+text = "New Puzzle"

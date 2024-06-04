@@ -3,6 +3,8 @@ using System;
 
 public partial class NonogramCell : TextureButton
 {
+	public int X;
+	public int Y;
 	private bool _moused;
 	private bool _alreadyClicked;
 	
@@ -19,13 +21,13 @@ public partial class NonogramCell : TextureButton
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (_moused && Input.IsActionPressed("Click") && !_alreadyClicked)
+		if (_moused && Input.IsActionPressed("Click") && !_alreadyClicked && !Disabled)
 		{
 			_alreadyClicked = true;
 			ButtonPressed = !ButtonPressed;
 		}
 
-		if (_moused && Input.IsActionPressed("Mark") && !_alreadyClicked)
+		if (_moused && Input.IsActionPressed("Mark") && !_alreadyClicked && !ButtonPressed)
 		{
 			_alreadyClicked = true;
 			Disabled = !Disabled;
