@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using APNonograms.Scripts;
 using FileAccess = Godot.FileAccess;
 
 public partial class Puzzle : Control
@@ -29,10 +31,10 @@ public partial class Puzzle : Control
 		_number = ResourceLoader.Load<PackedScene>("res://Scenes/number.tscn");
 	}
 
-	public void MakeBoard(String filePath)
+	public void MakeBoard(String puzzle)
 	{
 		ResetBoard();
-		FileAccess file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
+		FileAccess file = FileAccess.Open(puzzle, FileAccess.ModeFlags.Read);
 		String line = file.GetLine();
 		Title = line.Split("\"")[1];
 
@@ -144,6 +146,9 @@ public partial class Puzzle : Control
 		_vertRender.Position = new Vector2(0, longestHorz * 32);
 		_horzRender.Position = new Vector2(longestVert * 32, 0);
 
+		_vertRender.Size = new Vector2(longestVert * 32, _vertRender.Size.Y);
+		_horzRender.Size = new Vector2(_horzRender.Size.X, longestHorz * 32);
+
 		GetParent<Window>().Size =
 			(Vector2I)_boardRender.Position + (new Vector2I(_board.GetLength(0), _board.GetLength(1)) * 32);
 		GetParent<Window>().Visible = true;
@@ -156,5 +161,23 @@ public partial class Puzzle : Control
 		{
 			child.QueueFree();
 		}
+
+		foreach (var child in _horzRender.GetChildren())
+		{
+			child.Free();
+		}
+		
+		foreach (var child in _vertRender.GetChildren())
+		{
+			child.Free();
+		}
+
+		if (_horzNums != null && _vertNums != null)
+		{
+			_horzNums.Clear();
+			_vertNums.Clear();
+		}
+		_horzRender.Position = Vector2.Zero;
+		_vertRender.Position = Vector2.Zero;
 	}
 }

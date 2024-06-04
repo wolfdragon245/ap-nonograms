@@ -1,8 +1,11 @@
 using Godot;
 using System;
+using System.Net.Http;
 using APNonograms.Scripts;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Newtonsoft.Json;
+using HttpClient = System.Net.Http.HttpClient;
 
 public partial class Main : Node2D
 {
@@ -14,6 +17,8 @@ public partial class Main : Node2D
 	private LineEdit _password;
 	private TextClient _textClient;
 	private Puzzle _puzzle;
+	private String[] _puzzles;
+	private bool _puzzlesReady;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -40,8 +45,10 @@ public partial class Main : Node2D
 
 		_new.Pressed += () =>
 		{
-			_puzzle.MakeBoard("res://Assets/Puzzles/LingoSmile.txt");
+			_puzzle.MakeBoard(SelectPuzzle());
 		};
+
+		GetPuzzles();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,6 +56,8 @@ public partial class Main : Node2D
 	{
 		_connect.Visible = !Universal.Connected;
 		_disconnect.Visible = Universal.Connected;
+
+		_new.Visible = Universal.Connected && _puzzlesReady;
 	}
 	
 	public void Connect(String ip, String slot, String password)
@@ -82,5 +91,40 @@ public partial class Main : Node2D
 		Universal.Session.Socket.DisconnectAsync();
 		_textClient.GetParent<Window>().Visible = false;
 		Universal.Connected = false;
+	}
+
+	public async void GetPuzzles()
+	{
+		using HttpResponseMessage data = await Universal.client.GetAsync("");
+		data.EnsureSuccessStatusCode();
+		_puzzles = JsonConvert.DeserializeObject<String[]>(await data.Content.ReadAsStringAsync());
+		if (!DirAccess.DirExistsAbsolute("user://Puzzles/"))
+		{
+			DirAccess.MakeDirAbsolute("user://Puzzles/");
+		}
+
+		DirAccess dir = DirAccess.Open("user://Puzzles/");
+		foreach (String file in dir.GetFiles())
+		{
+			dir.Remove(file);
+		}
+
+		foreach (String puzzle in _puzzles)
+		{
+			using HttpResponseMessage puzzleData = await Universal.client.GetAsync(puzzle.Replace(Universal.baseURL, ""));
+			puzzleData.EnsureSuccessStatusCode();
+			FileAccess file = FileAccess.Open("user://Puzzles/" + puzzle.Replace(Universal.baseURL + "Puzzles/", ""),
+				FileAccess.ModeFlags.WriteRead);
+			file.StoreLine(await puzzleData.Content.ReadAsStringAsync());
+			file.Close();
+		}
+
+		_puzzles = dir.GetFiles();
+		_puzzlesReady = true;
+	}
+
+	public String SelectPuzzle()
+	{
+		return "user://Puzzles/" + _puzzles[GD.RandRange(0, _puzzles.Length - 1)];
 	}
 }
