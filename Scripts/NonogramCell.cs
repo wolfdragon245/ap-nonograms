@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using APNonograms.Scripts;
 
 public partial class NonogramCell : TextureButton
 {
@@ -23,19 +24,31 @@ public partial class NonogramCell : TextureButton
 	{
 		if (_moused && Input.IsActionPressed("Click") && !_alreadyClicked && !Disabled)
 		{
+			if (Universal.FirstCell)
+			{
+				Universal.FirstCell = false;
+				Universal.Input = !ButtonPressed;
+			}
 			_alreadyClicked = true;
-			ButtonPressed = !ButtonPressed;
+			ButtonPressed = Universal.Input;
+			
 		}
 
 		if (_moused && Input.IsActionPressed("Mark") && !_alreadyClicked && !ButtonPressed)
 		{
+			if (Universal.FirstCell)
+			{
+				Universal.FirstCell = false;
+				Universal.Input = !Disabled;
+			}
 			_alreadyClicked = true;
-			Disabled = !Disabled;
+			Disabled = Universal.Input;
 		}
 
 		if (Input.IsActionJustReleased("Click") || Input.IsActionJustReleased("Mark"))
 		{
 			_alreadyClicked = false;
+			Universal.FirstCell = true;
 		}
 	}
 }

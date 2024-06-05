@@ -10,6 +10,8 @@ public static class Universal
 {
     public static ArchipelagoSession Session;
     public static bool Connected;
+    public static bool FirstCell;
+    public static bool Input;
     public static String baseURL = "https://commandtm.github.io/ap-nonograms/";
     
     public static HttpClient client = new()
