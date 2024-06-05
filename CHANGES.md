@@ -7,6 +7,7 @@
 
 ## Improved Features
 - Dragging an input no longer flips any cell it goes over, but persists what the input was for the first cell
-- Text client can no longer send empty messages
-- The text client is now resizable
-- The text client now has colored text to make it more similar to archipelago's vanilla client
+- The text client can no longer send empty messages
+- The text client window is now resizable
+- The text client now has colored text to make it more readable
+- The puzzle outlines are no longer black, making it easier to see the grid with a lot of filled in cells
