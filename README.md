@@ -13,4 +13,4 @@ AP Nonograms is a special client for use with [Archipelago](https://github.com/A
 ### 0.9.0g
 - Have a system in place to have solving more difficult puzzles be more rewarding, the exact method is still undecided
 ### 1.0.0g
-- This release will mostly be just a version increment, once this project is merged [Archipelago](https://github.com/ArchipelagoMW/Archipelago), it'll move to 1.0.0g
+- This release will mostly be just a version increment, once this project is merged into [Archipelago](https://github.com/ArchipelagoMW/Archipelago), it'll move to 1.0.0g
