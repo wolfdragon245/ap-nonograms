@@ -3,7 +3,7 @@ AP Nonograms is a special client for use with [Archipelago](https://github.com/A
 
 ## Roadmap
 ### 0.7.1g
-- Overall improvements to the 0.7.0, no real new features, just helping the ease of use
+- Overall improvements to 0.7.0, no real new features, just helping the ease of use
 ### 0.7.2g
 - Whenever you solve a puzzle, it will be removed from the rotation so you don't get it again
 - Improve the process of grabbing the Nonograms from the puzzle bank
