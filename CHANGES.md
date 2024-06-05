@@ -1,0 +1,12 @@
+# AP Nonograms 0.7.1
+## Release Notes
+- While a Linux release is available, it is completely untested due to me not having a machine to test it with, if you're brave, give it a try!
+- [Many features are still planned to be implemented](https://github.com/CommandTM/ap-nonograms?tab=readme-ov-file#roadmap), be patient for more in the (hopefully near) future!
+
+## New Features
+
+## Improved Features
+- Dragging an input no longer flips any cell it goes over, but persists what the input was for the first cell
+- Text client can no longer send empty messages
+- The text client is now resizable
+- The text client now has colored text to make it more similar to archipelago's vanilla client

@@ -100,13 +100,13 @@ public partial class Main : Node2D
 			_textClient.GetParent<Window>().Visible = true;
 		}
 		Universal.Connected = result.Successful;
-		_textClient.ClearText();
 	}
 	
 	public void Disconnect()
 	{
 		Universal.Session.Socket.DisconnectAsync();
 		_textClient.GetParent<Window>().Visible = false;
+		_textClient.ClearText();
 		_puzzle.GetParent<Window>().Visible = false;
 		Universal.Connected = false;
 	}
