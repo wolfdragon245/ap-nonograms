@@ -144,15 +144,15 @@ public partial class Puzzle : Control
 				_boardRender.AddChild(cell);
 			}
 		}
-		_boardRender.Position = new Vector2(longestVert*32, longestHorz*32);
-		_vertRender.Position = new Vector2(0, longestHorz * 32);
-		_horzRender.Position = new Vector2(longestVert * 32, 0);
+		_boardRender.Position = new Vector2(longestVert*32, longestHorz*32) + (new Vector2I(32, 32));
+		_vertRender.Position = new Vector2(0, longestHorz * 32) + (new Vector2I(32, 32));
+		_horzRender.Position = new Vector2(longestVert * 32, 0) + (new Vector2I(32, 32));
 
 		_vertRender.Size = new Vector2(longestVert * 32, _vertRender.Size.Y);
 		_horzRender.Size = new Vector2(_horzRender.Size.X, longestHorz * 32);
 
 		GetParent<Window>().Size =
-			(Vector2I)_boardRender.Position + (new Vector2I(_board.GetLength(0), _board.GetLength(1)) * 32);
+			(Vector2I)_boardRender.Position + (new Vector2I(_board.GetLength(0), _board.GetLength(1)) * 32) + (new Vector2I(32, 32));
 		GetParent<Window>().Title = "????? By: " + Author;
 		GetParent<Window>().Visible = true;
 	}
