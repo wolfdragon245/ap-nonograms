@@ -11,3 +11,6 @@
 - The text client window is now resizable
 - The text client now has colored text to make it more readable
 - The puzzle outlines are no longer black, making it easier to see the grid with a lot of filled in cells
+- The puzzle window is slightly bigger
+- Marked tiles now have X's on them
+- Fixed hints not getting sent to text client
