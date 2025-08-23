@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byma4geqx1f0k" path="res://Assets/empty.png" id="1_eniwx"]
 [ext_resource type="Texture2D" uid="uid://b28t6kk53ckoq" path="res://Assets/filled.png" id="2_8dypc"]
-[ext_resource type="Script" path="res://Scripts/NonogramCell.cs" id="3_6iiv2"]
+[ext_resource type="Script" uid="uid://dwvfxgekn87l5" path="res://Scripts/NonogramCell.cs" id="3_6iiv2"]
 [ext_resource type="Texture2D" uid="uid://bhdofqgmt8d5q" path="res://Assets/mark.png" id="3_hg30x"]
 
 [node name="Nonogram Cell" type="TextureButton"]
